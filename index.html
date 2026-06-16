@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сокрытие — Экономическая безопасность</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------- Reset & base ---------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0b0e1a;
+            --bg-secondary: #11162b;
+            --bg-card: #161d38;
+            --bg-card-hover: #1c254a;
+            --border-color: #2a3a6a;
+            --text-primary: #f0f4ff;
+            --text-secondary: #a8b9e8;
+            --accent: #4f7cff;
+            --accent-glow: rgba(79, 124, 255, 0.25);
+            --gradient: linear-gradient(135deg, #4f7cff, #7c4dff);
+            --radius: 16px;
+            --shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: #7c9cff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- Scrollbar ---------- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6a8cff;
+        }
+
+        /* ---------- Header ---------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(11, 14, 26, 0.82);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid rgba(42, 58, 106, 0.3);
+            transition: var(--transition);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: var(--gradient);
+            border-radius: 10px;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+        .nav a:hover {
+            color: var(--text-primary);
+        }
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn-outline {
+            padding: 8px 22px;
+            border: 1.5px solid var(--accent);
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--accent);
+            background: transparent;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(79, 124, 255, 0.08), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 77, 255, 0.06), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 36px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            background: rgba(79, 124, 255, 0.12);
+            border: 1px solid rgba(79, 124, 255, 0.2);
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.3);
+            }
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px var(--accent-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px var(--accent-glow);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 1/1;
+            background: radial-gradient(ellipse at center, rgba(79, 124, 255, 0.06), transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-graphic .ring {
+            position: absolute;
+            border: 1px solid rgba(79, 124, 255, 0.15);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+        .hero-graphic .ring:nth-child(1) {
+            width: 80%;
+            height: 80%;
+            animation-duration: 25s;
+        }
+        .hero-graphic .ring:nth-child(2) {
+            width: 60%;
+            height: 60%;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+        .hero-graphic .ring:nth-child(3) {
+            width: 40%;
+            height: 40%;
+            animation-duration: 12s;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-graphic .center-icon {
+            font-size: 4.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            opacity: 0.9;
+            z-index: 1;
+            filter: drop-shadow(0 0 40px var(--accent-glow));
+        }
+
+        /* ---------- Section common ---------- */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 56px;
+        }
+
+        .section-header .label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(79, 124, 255, 0.1);
+            padding: 4px 16px;
+            border-radius: 60px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(79, 124, 255, 0.15);
+        }
+
+        .section-header h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* ---------- Stages ---------- */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .stage-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .stage-card .number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stage-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .stage-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stage-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .stage-card .highlight-text {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .stage-card .tag {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 4px 14px;
+            background: rgba(79, 124, 255, 0.1);
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            border: 1px solid rgba(79, 124, 255, 0.15);
+        }
+
+        /* ---------- Analysis section ---------- */
+        .analysis-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .analysis-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .analysis-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        .analysis-features {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .analysis-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            list-style: none;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .analysis-features li .check {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .analysis-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .analysis-visual .graphic-box {
+            width: 100%;
+            max-width: 400px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .graphic-box .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 16px;
+            height: 140px;
+            padding: 12px 0;
+        }
+
+        .graphic-box .bar {
+            width: 32px;
+            background: var(--gradient);
+            border-radius: 6px 6px 0 0;
+            transition: var(--transition);
+            animation: grow-bar 1.2s ease-out forwards;
+            opacity: 0;
+            transform-origin: bottom;
+        }
+
+        .graphic-box .bar:nth-child(1) {
+            height: 60%;
+            animation-delay: 0.1s;
+        }
+        .graphic-box .bar:nth-child(2) {
+            height: 90%;
+            animation-delay: 0.25s;
+        }
+        .graphic-box .bar:nth-child(3) {
+            height: 40%;
+            animation-delay: 0.4s;
+        }
+        .graphic-box .bar:nth-child(4) {
+            height: 75%;
+            animation-delay: 0.55s;
+        }
+        .graphic-box .bar:nth-child(5) {
+            height: 50%;
+            animation-delay: 0.7s;
+        }
+
+        @keyframes grow-bar {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        .graphic-box .chart-label {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        /* ---------- CTA ---------- */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0 100px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: transparent;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(79, 124, 255, 0.05);
+            color: var(--accent);
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0 32px;
+            background: var(--bg-primary);
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 992px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-badges {
+                justify-content: center;
+            }
+            .hero-content .btn-primary {
+                margin: 0 auto;
+            }
+            .hero-graphic {
+                max-width: 320px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .analysis-features li {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header .container {
+                height: 64px;
+            }
+            .nav {
+                gap: 16px;
+            }
+            .nav a {
+                font-size: 0.8rem;
+            }
+            .btn-outline {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+            }
+            .hero {
+                padding: 120px 0 60px;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* ---------- Animations ---------- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* stagger children */
+        .stagger>* {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stagger.visible>*:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+        .stagger.visible>*:nth-child(2) {
+            transition-delay: 0.12s;
+        }
+        .stagger.visible>*:nth-child(3) {
+            transition-delay: 0.19s;
+        }
+        .stagger.visible>*:nth-child(4) {
+            transition-delay: 0.26s;
+        }
+        .stagger.visible>*:nth-child(5) {
+            transition-delay: 0.33s;
+        }
+        .stagger.visible>*:nth-child(6) {
+            transition-delay: 0.40s;
+        }
+        .stagger.visible>* {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-icon">&#9679;</span>
+                <span>Сокрытие</span>
+            </a>
+            <nav class="nav">
+                <a href="#stages">Этапы</a>
+                <a href="#analysis">Анализ</a>
+                <a href="#cta">Контакты</a>
+                <a href="#" class="btn-outline">Демо</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="badge"><span class="dot"></span> Работает в реальном времени</span>
+                    <span class="badge">&#9889; Автоматизация</span>
+                    <span class="badge">&#128737; Экономическая безопасность</span>
+                </div>
+                <h1>
+                    Проект <br /><span class="highlight">«Сокрытие»</span>
+                </h1>
+                <p>
+                    Выявление организаций, скрывающих денежные средства для уклонения
+                    от уплаты налогов, сборов и страховых взносов.
+                </p>
+                <a href="#stages" class="btn-primary">Узнать больше &rarr;</a>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-graphic">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <span class="center-icon">&#128200;</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STAGES ===== -->
+    <section class="section" id="stages">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="label">Процесс</span>
+                <h2>Как работает <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">«Сокрытие»</span></h2>
+                <p>Полностью автоматизированный сбор и анализ данных для обеспечения прозрачности финансовых потоков.</p>
+            </div>
+
+            <div class="stages-grid stagger" id="stagesGrid">
+                <!-- Stage 1 -->
+                <div class="stage-card">
+                    <div class="number">01</div>
+                    <span class="icon">&#128203;</span>
+                    <h3>Сбор данных ФНС</h3>
+                    <p>
+                        Автоматизированный сбор информации с сайта ФНС в разделе
+                        <span class="highlight-text">«Прозрачный бизнес»</span> —
+                        сумма налоговой недоимки.
+                    </p>
+                    <span class="tag">&#9679; В реальном времени</span>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="stage-card">
+                    <div class="number">02</div>
+                    <span class="icon">&#128220;</span>
+                    <h3>Данные АС «Каскад»</h3>
+                    <p>
+                        Сбор информации из АС «Каскад» в разделе
+                        <span class="highlight-text">«Ограничения по счетам ФНС»</span> —
+                        сумма неуплаты налогов.
+                    </p>
+                    <span class="tag">&#9679; В реальном времени</span>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="stage-card">
+                    <div class="number">03</div>
+                    <span class="icon">&#128181;</span>
+                    <h3>Транзакции контрагента</h3>
+                    <p>
+                        Сбор данных по транзакциям за последние
+                        <span class="highlight-text">1–2 года</span> (в зависимости от
+                        суммы недоимки: 3.5 млн / 13.5 млн ₽).
+                    </p>
+                    <span class="tag">&#9679; Глубинный анализ</span>
+                </div>
+
+                <!-- Stage 4 (Analysis) -->
+                <div class="stage-card" style="border-color:var(--accent);">
+                    <div class="number">04</div>
+                    <span class="icon">&#9889;</span>
+                    <h3>Анализ &amp; выявление</h3>
+                    <p>
+                        Применение алгоритмов для выявления скрытых схем сокрытия
+                        денежных средств. Отслеживание изменений в финансовых
+                        отчётах и операциях в режиме реального времени.
+                    </p>
+                    <span class="tag" style="background:rgba(79,124,255,0.2);color:#7c9cff;">&#9889; Ключевой этап</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ANALYSIS ===== -->
+    <section class="section analysis-section" id="analysis">
+        <div class="container">
+            <div class="analysis-grid">
+                <div class="analysis-content fade-up">
+                    <span class="label" style="display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:rgba(79,124,255,0.1);padding:4px 16px;border-radius:60px;margin-bottom:12px;border:1px solid rgba(79,124,255,0.15);">
+                        Интеллектуальный анализ
+                    </span>
+                    <h2>Выявление недобросовестных организаций</h2>
+                    <p>
+                        Система отслеживает изменения в финансовых отчётах и операциях
+                        организаций в режиме реального времени, применяя
+                        алгоритмы машинного обучения для обнаружения аномалий.
+                    </p>
+                    <ul class="analysis-features">
+                        <li>
+                            <span class="check">&#10003;</span>
+                            Мониторинг движения финансовых потоков
+                        </li>
+                        <li>
+                            <span class="check">&#10003;</span>
+                            Обнаружение скрытых схем уклонения от уплаты налогов
+                        </li>
+                        <li>
+                            <span class="check">&#10003;</span>
+                            Автоматическая оценка деловой репутации
+                        </li>
+                        <li>
+                            <span class="check">&#10003;</span>
+                            Оповещения при критических изменениях
+                        </li>
+                    </ul>
+                </div>
+                <div class="analysis-visual fade-up">
+                    <div class="graphic-box">
+                        <div class="chart-bars">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <div class="chart-label">
+                            &#128200; Динамика выявленных аномалий
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="fade-up">
+                <h2>Готовы к <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">прозрачности</span>?</h2>
+                <p>
+                    Внедрите «Сокрытие» в свою систему мониторинга и получите
+                    полный контроль над финансовыми потоками организаций.
+                </p>
+                <div class="cta-group">
+                    <a href="#" class="btn-primary">Запросить демо</a>
+                    <a href="#" class="btn-secondary">Связаться с нами</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Проект «Сокрытие». Все права защищены.</p>
+            <div class="footer-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Документация</a>
+                <a href="#">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ---------- Intersection Observer for fade-up ----------
+        const fadeEls = document.querySelectorAll('.fade-up');
+        const staggerEls = document.querySelectorAll('.stagger');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        fadeEls.forEach(el => observer.observe(el));
+        staggerEls.forEach(el => observer.observe(el));
+
+        // ---------- Header shadow on scroll ----------
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // ---------- Smooth anchor (optional enhancement) ----------
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        console.log('🚀 Landing «Сокрытие» загружен');
+    </script>
+
+</body>
+</html>
