@@ -18,19 +18,22 @@
         }
 
         :root {
-            --bg-primary: #0b0e1a;
-            --bg-secondary: #11162b;
-            --bg-card: #161d38;
-            --bg-card-hover: #1c254a;
-            --border-color: #2a3a6a;
-            --text-primary: #f0f4ff;
-            --text-secondary: #a8b9e8;
-            --accent: #4f7cff;
-            --accent-glow: rgba(79, 124, 255, 0.25);
-            --gradient: linear-gradient(135deg, #4f7cff, #7c4dff);
-            --radius: 16px;
-            --shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-primary: #f8faff;
+            --bg-secondary: #f0f4fe;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f5f9ff;
+            --border-color: #dde3ed;
+            --text-primary: #1a2a3a;
+            --text-secondary: #4a5b6e;
+            --accent-blue: #003399;
+            --accent-green: #00a34b;
+            --accent-green-light: #e6f5ed;
+            --accent-blue-light: #e6edf8;
+            --gradient-green: linear-gradient(135deg, #00a34b, #007a3a);
+            --gradient-blue: linear-gradient(135deg, #003399, #1a4f9e);
+            --shadow: 0 8px 30px rgba(0, 51, 153, 0.08);
+            --radius: 12px;
+            --transition: 0.25s ease;
         }
 
         html {
@@ -47,12 +50,12 @@
         }
 
         a {
-            color: var(--accent);
+            color: var(--accent-blue);
             text-decoration: none;
             transition: var(--transition);
         }
         a:hover {
-            color: #7c9cff;
+            color: var(--accent-green);
         }
 
         .container {
@@ -66,14 +69,14 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--accent);
+            background: var(--accent-blue);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #6a8cff;
+            background: var(--accent-green);
         }
 
         /* ---------- Header ---------- */
@@ -83,10 +86,11 @@
             left: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(11, 14, 26, 0.82);
-            backdrop-filter: blur(16px) saturate(1.2);
-            border-bottom: 1px solid rgba(42, 58, 106, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--accent-blue);
             transition: var(--transition);
+            box-shadow: 0 2px 12px rgba(0, 51, 153, 0.06);
         }
 
         .header .container {
@@ -103,6 +107,7 @@
             font-weight: 800;
             font-size: 1.3rem;
             letter-spacing: -0.5px;
+            color: var(--accent-blue);
         }
 
         .logo-icon {
@@ -111,18 +116,18 @@
             justify-content: center;
             width: 38px;
             height: 38px;
-            background: var(--gradient);
-            border-radius: 10px;
+            background: var(--gradient-green);
+            border-radius: 8px;
             font-size: 1.2rem;
             color: #fff;
             font-weight: 700;
         }
 
         .logo span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent-blue);
+        }
+        .logo .highlight {
+            color: var(--accent-green);
         }
 
         .nav {
@@ -145,11 +150,11 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient);
+            background: var(--gradient-green);
             transition: var(--transition);
         }
         .nav a:hover {
-            color: var(--text-primary);
+            color: var(--accent-blue);
         }
         .nav a:hover::after {
             width: 100%;
@@ -157,50 +162,27 @@
 
         .btn-outline {
             padding: 8px 22px;
-            border: 1.5px solid var(--accent);
+            border: 2px solid var(--accent-green);
             border-radius: 60px;
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--accent);
+            color: var(--accent-green);
             background: transparent;
             transition: var(--transition);
             cursor: pointer;
         }
         .btn-outline:hover {
-            background: var(--accent);
+            background: var(--accent-green);
             color: #fff;
-            box-shadow: 0 0 24px var(--accent-glow);
+            box-shadow: 0 4px 16px rgba(0, 163, 75, 0.25);
         }
 
         /* ---------- Hero ---------- */
         .hero {
             padding: 140px 0 80px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(79, 124, 255, 0.08), transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(124, 77, 255, 0.06), transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f6fe 100%);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .hero .container {
@@ -218,13 +200,11 @@
             line-height: 1.15;
             letter-spacing: -1.5px;
             margin-bottom: 20px;
+            color: var(--accent-blue);
         }
 
         .hero-content h1 .highlight {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent-green);
         }
 
         .hero-content p {
@@ -246,18 +226,19 @@
             align-items: center;
             gap: 8px;
             padding: 6px 18px;
-            background: rgba(79, 124, 255, 0.12);
-            border: 1px solid rgba(79, 124, 255, 0.2);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 60px;
             font-size: 0.8rem;
             font-weight: 500;
             color: var(--text-secondary);
+            box-shadow: var(--shadow);
         }
 
         .badge .dot {
             width: 6px;
             height: 6px;
-            background: #4caf50;
+            background: var(--accent-green);
             border-radius: 50%;
             display: inline-block;
             animation: pulse-dot 2s infinite;
@@ -278,7 +259,7 @@
         .btn-primary {
             display: inline-block;
             padding: 14px 40px;
-            background: var(--gradient);
+            background: var(--gradient-green);
             border: none;
             border-radius: 60px;
             font-weight: 600;
@@ -286,11 +267,11 @@
             color: #fff;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 8px 32px var(--accent-glow);
+            box-shadow: 0 4px 16px rgba(0, 163, 75, 0.2);
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 48px var(--accent-glow);
+            box-shadow: 0 8px 30px rgba(0, 163, 75, 0.3);
         }
 
         .hero-visual {
@@ -303,7 +284,7 @@
             width: 100%;
             max-width: 480px;
             aspect-ratio: 1/1;
-            background: radial-gradient(ellipse at center, rgba(79, 124, 255, 0.06), transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(0, 163, 75, 0.04), transparent 70%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -313,7 +294,7 @@
 
         .hero-graphic .ring {
             position: absolute;
-            border: 1px solid rgba(79, 124, 255, 0.15);
+            border: 2px solid rgba(0, 51, 153, 0.08);
             border-radius: 50%;
             animation: spin 20s linear infinite;
         }
@@ -321,17 +302,20 @@
             width: 80%;
             height: 80%;
             animation-duration: 25s;
+            border-color: rgba(0, 163, 75, 0.1);
         }
         .hero-graphic .ring:nth-child(2) {
             width: 60%;
             height: 60%;
             animation-duration: 18s;
             animation-direction: reverse;
+            border-color: rgba(0, 51, 153, 0.08);
         }
         .hero-graphic .ring:nth-child(3) {
             width: 40%;
             height: 40%;
             animation-duration: 12s;
+            border-color: rgba(0, 163, 75, 0.12);
         }
 
         @keyframes spin {
@@ -343,10 +327,10 @@
         .hero-graphic .center-icon {
             font-size: 4.5rem;
             font-weight: 300;
-            color: var(--accent);
+            color: var(--accent-blue);
             opacity: 0.9;
             z-index: 1;
-            filter: drop-shadow(0 0 40px var(--accent-glow));
+            filter: drop-shadow(0 4px 20px rgba(0, 51, 153, 0.1));
         }
 
         /* ---------- Section common ---------- */
@@ -356,7 +340,7 @@
 
         .section-header {
             text-align: center;
-            max-width: 640px;
+            max-width: 700px;
             margin: 0 auto 56px;
         }
 
@@ -366,12 +350,12 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--accent);
-            background: rgba(79, 124, 255, 0.1);
+            color: var(--accent-blue);
+            background: var(--accent-blue-light);
             padding: 4px 16px;
             border-radius: 60px;
             margin-bottom: 12px;
-            border: 1px solid rgba(79, 124, 255, 0.15);
+            border: 1px solid rgba(0, 51, 153, 0.1);
         }
 
         .section-header h2 {
@@ -379,6 +363,11 @@
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 16px;
+            color: var(--accent-blue);
+        }
+
+        .section-header h2 .highlight {
+            color: var(--accent-green);
         }
 
         .section-header p {
@@ -389,7 +378,7 @@
         /* ---------- Stages ---------- */
         .stages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 28px;
         }
 
@@ -401,23 +390,23 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .stage-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent);
-            transform: translateY(-6px);
-            box-shadow: var(--shadow);
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 51, 153, 0.08);
         }
 
         .stage-card .number {
             font-size: 3rem;
             font-weight: 800;
-            background: var(--gradient);
+            background: var(--gradient-green);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            opacity: 0.3;
+            opacity: 0.2;
             line-height: 1;
             margin-bottom: 8px;
         }
@@ -432,6 +421,7 @@
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 10px;
+            color: var(--accent-blue);
         }
 
         .stage-card p {
@@ -440,7 +430,7 @@
         }
 
         .stage-card .highlight-text {
-            color: var(--accent);
+            color: var(--accent-green);
             font-weight: 600;
         }
 
@@ -448,70 +438,77 @@
             display: inline-block;
             margin-top: 14px;
             padding: 4px 14px;
-            background: rgba(79, 124, 255, 0.1);
+            background: var(--accent-green-light);
             border-radius: 60px;
             font-size: 0.7rem;
             font-weight: 600;
-            color: var(--accent);
-            border: 1px solid rgba(79, 124, 255, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 163, 75, 0.15);
         }
 
-        /* ---------- Analysis section ---------- */
-        .analysis-section {
+        .stage-card .tag-blue {
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+            border-color: rgba(0, 51, 153, 0.1);
+        }
+
+        /* ---------- Legal section ---------- */
+        .legal-section {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
         }
 
-        .analysis-grid {
+        .legal-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
         }
 
-        .analysis-content h2 {
+        .legal-content h2 {
             font-size: 2.2rem;
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 16px;
+            color: var(--accent-blue);
         }
 
-        .analysis-content p {
+        .legal-content p {
             color: var(--text-secondary);
             font-size: 1.05rem;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
-        .analysis-features {
+        .legal-content ul {
+            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
-        .analysis-features li {
+        .legal-content ul li {
             display: flex;
             align-items: flex-start;
-            gap: 14px;
-            list-style: none;
-            font-size: 0.95rem;
+            gap: 12px;
             color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
-        .analysis-features li .check {
-            color: var(--accent);
+        .legal-content ul li .check {
+            color: var(--accent-green);
             font-weight: 700;
             font-size: 1.2rem;
             flex-shrink: 0;
         }
 
-        .analysis-visual {
+        .legal-visual {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .analysis-visual .graphic-box {
+        .legal-visual .legal-card {
             width: 100%;
             max-width: 400px;
             background: var(--bg-card);
@@ -519,142 +516,30 @@
             border-radius: var(--radius);
             padding: 32px;
             text-align: center;
+            box-shadow: var(--shadow);
         }
 
-        .graphic-box .chart-bars {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 16px;
-            height: 140px;
-            padding: 12px 0;
-        }
-
-        .graphic-box .bar {
-            width: 32px;
-            background: var(--gradient);
-            border-radius: 6px 6px 0 0;
-            transition: var(--transition);
-            animation: grow-bar 1.2s ease-out forwards;
-            opacity: 0;
-            transform-origin: bottom;
-        }
-
-        .graphic-box .bar:nth-child(1) {
-            height: 60%;
-            animation-delay: 0.1s;
-        }
-        .graphic-box .bar:nth-child(2) {
-            height: 90%;
-            animation-delay: 0.25s;
-        }
-        .graphic-box .bar:nth-child(3) {
-            height: 40%;
-            animation-delay: 0.4s;
-        }
-        .graphic-box .bar:nth-child(4) {
-            height: 75%;
-            animation-delay: 0.55s;
-        }
-        .graphic-box .bar:nth-child(5) {
-            height: 50%;
-            animation-delay: 0.7s;
-        }
-
-        @keyframes grow-bar {
-            0% {
-                transform: scaleY(0);
-                opacity: 0;
-            }
-            100% {
-                transform: scaleY(1);
-                opacity: 1;
-            }
-        }
-
-        .graphic-box .chart-label {
-            margin-top: 16px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-        }
-
-        /* ---------- CTA ---------- */
-        .cta-section {
-            text-align: center;
-            padding: 80px 0 100px;
-        }
-
-        .cta-section h2 {
-            font-size: 2.4rem;
+        .legal-visual .legal-card .stat {
+            font-size: 2.8rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
         }
 
-        .cta-section p {
+        .legal-visual .legal-card .stat-label {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 520px;
-            margin: 0 auto 32px;
+            font-size: 0.9rem;
+            margin-top: 4px;
         }
 
-        .cta-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .btn-secondary {
-            display: inline-block;
-            padding: 14px 36px;
-            border: 1.5px solid var(--border-color);
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--text-primary);
-            background: transparent;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            background: rgba(79, 124, 255, 0.05);
-            color: var(--accent);
-        }
-
-        /* ---------- Footer ---------- */
-        .footer {
-            border-top: 1px solid var(--border-color);
-            padding: 40px 0 32px;
-            background: var(--bg-primary);
-        }
-
-        .footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-        .footer-links a {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        .footer-links a:hover {
-            color: var(--text-primary);
+        .legal-visual .legal-card .divider {
+            border: none;
+            height: 1px;
+            background: var(--border-color);
+            margin: 20px 0;
         }
 
         /* ---------- Responsive ---------- */
@@ -679,11 +564,11 @@
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            .analysis-grid {
+            .legal-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .analysis-features li {
+            .legal-content ul li {
                 justify-content: center;
             }
         }
@@ -714,13 +599,8 @@
             .stages-grid {
                 grid-template-columns: 1fr;
             }
-            .footer .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
+            .legal-visual .legal-card .stat {
+                font-size: 2.2rem;
             }
         }
 
@@ -736,7 +616,6 @@
             transform: translateY(0);
         }
 
-        /* stagger children */
         .stagger>* {
             opacity: 0;
             transform: translateY(24px);
@@ -777,9 +656,8 @@
             </a>
             <nav class="nav">
                 <a href="#stages">Этапы</a>
-                <a href="#analysis">Анализ</a>
-                <a href="#cta">Контакты</a>
-                <a href="#" class="btn-outline">Демо</a>
+                <a href="#legal">Правовая основа</a>
+                <a href="#" class="btn-outline">СБЕР БЕЗОПАСНОСТЬ 2026</a>
             </nav>
         </div>
     </header>
@@ -798,7 +676,8 @@
                 </h1>
                 <p>
                     Выявление организаций, скрывающих денежные средства для уклонения
-                    от уплаты налогов, сборов и страховых взносов.
+                    от уплаты налогов, сборов и страховых взносов. Дополнительный
+                    функционал в АС «Каскад» для оценки деловой репутации.
                 </p>
                 <a href="#stages" class="btn-primary">Узнать больше &rarr;</a>
             </div>
@@ -818,8 +697,8 @@
         <div class="container">
             <div class="section-header fade-up">
                 <span class="label">Процесс</span>
-                <h2>Как работает <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">«Сокрытие»</span></h2>
-                <p>Полностью автоматизированный сбор и анализ данных для обеспечения прозрачности финансовых потоков.</p>
+                <h2>Шесть этапов автоматизированного <span class="highlight">мониторинга</span></h2>
+                <p>Полный цикл от сбора данных до финальной проверки для обеспечения прозрачности финансовых потоков.</p>
             </div>
 
             <div class="stages-grid stagger" id="stagesGrid">
@@ -829,9 +708,9 @@
                     <span class="icon">&#128203;</span>
                     <h3>Сбор данных ФНС</h3>
                     <p>
-                        Автоматизированный сбор информации с сайта ФНС в разделе
+                        Автоматизированный сбор с сайта ФНС в разделе
                         <span class="highlight-text">«Прозрачный бизнес»</span> —
-                        сумма налоговой недоимки.
+                        «Сведения о суммах недоимки и задолженности по пеням и штрафам».
                     </p>
                     <span class="tag">&#9679; В реальном времени</span>
                 </div>
@@ -842,9 +721,9 @@
                     <span class="icon">&#128220;</span>
                     <h3>Данные АС «Каскад»</h3>
                     <p>
-                        Сбор информации из АС «Каскад» в разделе
-                        <span class="highlight-text">«Ограничения по счетам ФНС»</span> —
-                        сумма неуплаты налогов.
+                        Сбор из АС «Каскад» в разделе
+                        <span class="highlight-text">«Ограничения по счетам ФНС/ФТС»</span> —
+                        «Сумма неуплаты налогов».
                     </p>
                     <span class="tag">&#9679; В реальном времени</span>
                 </div>
@@ -852,111 +731,106 @@
                 <!-- Stage 3 -->
                 <div class="stage-card">
                     <div class="number">03</div>
-                    <span class="icon">&#128181;</span>
-                    <h3>Транзакции контрагента</h3>
+                    <span class="icon">&#128197;</span>
+                    <h3>Контроль срока требования</h3>
                     <p>
-                        Сбор данных по транзакциям за последние
-                        <span class="highlight-text">1–2 года</span> (в зависимости от
-                        суммы недоимки: 3.5 млн / 13.5 млн ₽).
+                        Отслеживание истечения срока, указанного в требовании ФНС
+                        об уплате недоимки и задолженности по пеням и штрафам
+                        <span class="highlight-text">свыше 3,5 млн рублей</span>.
+                    </p>
+                    <span class="tag">&#9679; Вывод даты</span>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="stage-card">
+                    <div class="number">04</div>
+                    <span class="icon">&#128181;</span>
+                    <h3>Анализ транзакций</h3>
+                    <p>
+                        Сбор и анализ транзакций аффилированных организаций
+                        (по учредителю/директору/бенефициару) и ближайших контрагентов
+                        за последние 2 года при сумме задолженности
+                        <span class="highlight-text">≥ 3,5 млн</span> после истечения срока.
                     </p>
                     <span class="tag">&#9679; Глубинный анализ</span>
                 </div>
 
-                <!-- Stage 4 (Analysis) -->
-                <div class="stage-card" style="border-color:var(--accent);">
-                    <div class="number">04</div>
-                    <span class="icon">&#9889;</span>
-                    <h3>Анализ &amp; выявление</h3>
+                <!-- Stage 5 -->
+                <div class="stage-card">
+                    <div class="number">05</div>
+                    <span class="icon">&#128194;</span>
+                    <h3>Вывод в АС «Каскад»</h3>
                     <p>
-                        Применение алгоритмов для выявления скрытых схем сокрытия
-                        денежных средств. Отслеживание изменений в финансовых
-                        отчётах и операциях в режиме реального времени.
+                        Автоматизированный вывод собранной информации по четырём
+                        вышеуказанным показателям в АС «Каскад» для дальнейшего
+                        использования в мониторинге.
                     </p>
-                    <span class="tag" style="background:rgba(79,124,255,0.2);color:#7c9cff;">&#9889; Ключевой этап</span>
+                    <span class="tag">&#9679; Интеграция</span>
+                </div>
+
+                <!-- Stage 6 -->
+                <div class="stage-card" style="border-color:var(--accent-green);">
+                    <div class="number">06</div>
+                    <span class="icon">&#128065;</span>
+                    <h3>Перепроверка сотрудником</h3>
+                    <p>
+                        Финальная верификация полученных данных сотрудником,
+                        осуществляющим мониторинг деловой репутации контрагентов.
+                    </p>
+                    <span class="tag tag-blue">&#9889; Контроль качества</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== ANALYSIS ===== -->
-    <section class="section analysis-section" id="analysis">
+    <!-- ===== LEGAL SECTION ===== -->
+    <section class="section legal-section" id="legal">
         <div class="container">
-            <div class="analysis-grid">
-                <div class="analysis-content fade-up">
-                    <span class="label" style="display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:rgba(79,124,255,0.1);padding:4px 16px;border-radius:60px;margin-bottom:12px;border:1px solid rgba(79,124,255,0.15);">
-                        Интеллектуальный анализ
+            <div class="legal-grid">
+                <div class="legal-content fade-up">
+                    <span class="label" style="display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent-blue);background:var(--accent-blue-light);padding:4px 16px;border-radius:60px;margin-bottom:12px;border:1px solid rgba(0,51,153,0.1);">
+                        Правовая основа
                     </span>
-                    <h2>Выявление недобросовестных организаций</h2>
+                    <h2>Статья 199.2 УК РФ</h2>
                     <p>
-                        Система отслеживает изменения в финансовых отчётах и операциях
-                        организаций в режиме реального времени, применяя
-                        алгоритмы машинного обучения для обнаружения аномалий.
+                        Проект помогает выявлять организации, формально подпадающие
+                        под состав преступления, предусмотренного статьёй 199.2
+                        Уголовного кодекса Российской Федерации.
                     </p>
-                    <ul class="analysis-features">
+                    <ul>
                         <li>
                             <span class="check">&#10003;</span>
-                            Мониторинг движения финансовых потоков
+                            <strong>Часть 1</strong> — сокрытие денежных средств
+                            от <span class="highlight-text">3,5 млн до 13,5 млн</span> рублей
                         </li>
                         <li>
                             <span class="check">&#10003;</span>
-                            Обнаружение скрытых схем уклонения от уплаты налогов
+                            <strong>Часть 2</strong> — сокрытие денежных средств
+                            от <span class="highlight-text">13,5 млн</span> рублей и более
                         </li>
                         <li>
                             <span class="check">&#10003;</span>
-                            Автоматическая оценка деловой репутации
-                        </li>
-                        <li>
-                            <span class="check">&#10003;</span>
-                            Оповещения при критических изменениях
+                            При условии действующей недоимки по налогам, сборам,
+                            страховым взносам
                         </li>
                     </ul>
                 </div>
-                <div class="analysis-visual fade-up">
-                    <div class="graphic-box">
-                        <div class="chart-bars">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
-                        <div class="chart-label">
-                            &#128200; Динамика выявленных аномалий
+                <div class="legal-visual fade-up">
+                    <div class="legal-card">
+                        <div class="stat">3,5 млн ₽</div>
+                        <div class="stat-label">Нижний порог для ч. 1 ст. 199.2 УК РФ</div>
+                        <hr class="divider" />
+                        <div class="stat">13,5 млн ₽</div>
+                        <div class="stat-label">Нижний порог для ч. 2 ст. 199.2 УК РФ</div>
+                        <hr class="divider" />
+                        <div style="color:var(--text-secondary); font-size:0.9rem;">
+                            &#9888; При действующей недоимке
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ===== CTA ===== -->
-    <section class="cta-section" id="cta">
-        <div class="container">
-            <div class="fade-up">
-                <h2>Готовы к <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">прозрачности</span>?</h2>
-                <p>
-                    Внедрите «Сокрытие» в свою систему мониторинга и получите
-                    полный контроль над финансовыми потоками организаций.
-                </p>
-                <div class="cta-group">
-                    <a href="#" class="btn-primary">Запросить демо</a>
-                    <a href="#" class="btn-secondary">Связаться с нами</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Проект «Сокрытие». Все права защищены.</p>
-            <div class="footer-links">
-                <a href="#">Политика конфиденциальности</a>
-                <a href="#">Документация</a>
-                <a href="#">Поддержка</a>
-            </div>
-        </div>
-    </footer>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
@@ -982,13 +856,13 @@
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 40) {
-                header.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 51, 153, 0.08)';
             } else {
-                header.style.boxShadow = 'none';
+                header.style.boxShadow = '0 2px 12px rgba(0, 51, 153, 0.06)';
             }
         });
 
-        // ---------- Smooth anchor (optional enhancement) ----------
+        // ---------- Smooth anchor ----------
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -1001,7 +875,7 @@
             });
         });
 
-        console.log('🚀 Landing «Сокрытие» загружен');
+        console.log('🚀 Landing «Сокрытие» (стиль Сбер + ФНС) загружен');
     </script>
 
 </body>
