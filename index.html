@@ -391,6 +391,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow);
+            cursor: pointer;
         }
 
         .stage-card:hover {
@@ -542,6 +543,112 @@
             margin: 20px 0;
         }
 
+        /* ---------- Modal (popup) ---------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px 36px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.8rem;
+            line-height: 1;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0 8px;
+        }
+        .modal-close:hover {
+            color: var(--accent-blue);
+            transform: rotate(90deg);
+        }
+
+        .modal h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+        }
+
+        .modal .modal-sub {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .modal .modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        .modal .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .modal .btn-modal-close {
+            padding: 10px 28px;
+            background: var(--gradient-green);
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 163, 75, 0.2);
+        }
+        .modal .btn-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 163, 75, 0.3);
+        }
+
         /* ---------- Responsive ---------- */
         @media (max-width: 992px) {
             .hero .container {
@@ -570,6 +677,12 @@
             }
             .legal-content ul li {
                 justify-content: center;
+            }
+            .modal {
+                padding: 30px 20px;
+            }
+            .modal h3 {
+                font-size: 1.5rem;
             }
         }
 
@@ -601,6 +714,12 @@
             }
             .legal-visual .legal-card .stat {
                 font-size: 2.2rem;
+            }
+            .modal {
+                padding: 24px 16px;
+            }
+            .modal h3 {
+                font-size: 1.3rem;
             }
         }
 
@@ -702,8 +821,8 @@
             </div>
 
             <div class="stages-grid stagger" id="stagesGrid">
-                <!-- Stage 1 -->
-                <div class="stage-card">
+                <!-- Stage 1 — открывает попап -->
+                <div class="stage-card" data-modal="modal-fns">
                     <div class="number">01</div>
                     <span class="icon">&#128203;</span>
                     <h3>Сбор данных ФНС</h3>
@@ -832,6 +951,25 @@
         </div>
     </section>
 
+    <!-- ===== MODAL (POPUP) ===== -->
+    <div class="modal-overlay" id="modal-fns">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-fns">&times;</button>
+            <h3>Сбор данных ФНС</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> Система автоматически подключается к открытому API Федеральной налоговой службы и извлекает актуальные сведения о суммах недоимки, пенях и штрафах организаций из раздела «Прозрачный бизнес». Данные обновляются в реальном времени и передаются в аналитический модуль для последующей обработки.
+            </p>
+            <!-- Используем изображение images/FNS1.PNG -->
+            <img src="images/FNS1.PNG" alt="Сбор данных ФНС" class="modal-image" />
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128205; Источник: сайт ФНС, раздел «Прозрачный бизнес»</span>
+            </p>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-fns">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== SCRIPTS ===== -->
     <script>
         // ---------- Intersection Observer for fade-up ----------
@@ -875,7 +1013,45 @@
             });
         });
 
-        console.log('🚀 Landing «Сокрытие» (стиль Сбер + ФНС) загружен');
+        // ---------- Modal logic ----------
+        const modalOverlay = document.getElementById('modal-fns');
+        const openTriggers = document.querySelectorAll('[data-modal="modal-fns"]');
+        const closeButtons = document.querySelectorAll('[data-close="modal-fns"]');
+
+        // Открытие
+        openTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Закрытие по кнопкам
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Закрытие по клику на фон (overlay)
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        console.log('🚀 Landing «Сокрытие» с попапом для этапа 1 загружен');
     </script>
 
 </body>
