@@ -814,8 +814,8 @@
                     <span class="tag">&#9679; В реальном времени</span>
                 </div>
 
-                <!-- Stage 3 -->
-                <div class="stage-card">
+                <!-- Stage 3 — открывает попап modal-tre -->
+                <div class="stage-card" data-modal="modal-tre">
                     <div class="number">03</div>
                     <span class="icon">&#128197;</span>
                     <h3>Контроль срока требования</h3>
@@ -954,6 +954,24 @@
         </div>
     </div>
 
+    <!-- ===== MODAL (POPUP) для Контроля срока требования ===== -->
+    <div class="modal-overlay" id="modal-tre">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-tre">&times;</button>
+            <h3>Контроль срока требования</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> Система отслеживает истечение срока, указанного в требовании ФНС об уплате недоимки и задолженности по пеням и штрафам при сумме свыше 3,5 млн рублей. Автоматический вывод даты для дальнейшего анализа позволяет своевременно реагировать на критические сроки.
+            </p>
+            <img src="images/FNStre.jpg" alt="Контроль срока требования" class="modal-image" />
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128197; Отслеживание сроков по требованиям ФНС</span>
+            </p>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-tre">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== SCRIPTS ===== -->
     <script>
         // ---------- Intersection Observer for fade-up ----------
@@ -998,17 +1016,13 @@
         });
 
         // ---------- Universal Modal logic ----------
-        // Находим все модальные окна
         const modals = document.querySelectorAll('.modal-overlay');
 
         modals.forEach(modal => {
             const modalId = modal.id;
-            // Триггеры открытия (элементы с data-modal="id")
             const openTriggers = document.querySelectorAll(`[data-modal="${modalId}"]`);
-            // Кнопки закрытия внутри модалки (data-close="id")
             const closeButtons = modal.querySelectorAll(`[data-close="${modalId}"]`);
 
-            // Открытие
             openTriggers.forEach(trigger => {
                 trigger.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -1017,7 +1031,6 @@
                 });
             });
 
-            // Закрытие по кнопкам
             closeButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     modal.classList.remove('active');
@@ -1025,7 +1038,6 @@
                 });
             });
 
-            // Закрытие по клику на фон (overlay)
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     modal.classList.remove('active');
@@ -1034,7 +1046,6 @@
             });
         });
 
-        // Закрытие по Escape (для всех активных модалок)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const activeModal = document.querySelector('.modal-overlay.active');
@@ -1045,7 +1056,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с двумя попапами загружен');
+        console.log('🚀 Landing «Сокрытие» с тремя попапами загружен');
     </script>
 
 </body>
