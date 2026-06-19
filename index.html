@@ -788,7 +788,7 @@
             </div>
 
             <div class="stages-grid stagger" id="stagesGrid">
-                <!-- Stage 1 — открывает попап -->
+                <!-- Stage 1 — открывает попап modal-fns -->
                 <div class="stage-card" data-modal="modal-fns">
                     <div class="number">01</div>
                     <span class="icon">&#128203;</span>
@@ -801,8 +801,8 @@
                     <span class="tag">&#9679; В реальном времени</span>
                 </div>
 
-                <!-- Stage 2 -->
-                <div class="stage-card">
+                <!-- Stage 2 — открывает попап modal-kaskad -->
+                <div class="stage-card" data-modal="modal-kaskad">
                     <div class="number">02</div>
                     <span class="icon">&#128220;</span>
                     <h3>Данные АС «Каскад»</h3>
@@ -918,7 +918,7 @@
         </div>
     </section>
 
-    <!-- ===== MODAL (POPUP) ===== -->
+    <!-- ===== MODAL (POPUP) для Сбора данных ФНС ===== -->
     <div class="modal-overlay" id="modal-fns">
         <div class="modal">
             <button class="modal-close" data-close="modal-fns">&times;</button>
@@ -932,6 +932,24 @@
             </p>
             <div class="modal-footer">
                 <button class="btn-modal-close" data-close="modal-fns">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (POPUP) для Данных АС Каскад ===== -->
+    <div class="modal-overlay" id="modal-kaskad">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-kaskad">&times;</button>
+            <h3>Данные АС «Каскад»</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> Система автоматически собирает информацию из автоматизированной системы «Каскад» в разделе «Ограничения по счетам ФНС/ФТС» — сумма неуплаты налогов. Данные интегрируются в общий аналитический контур для оценки деловой репутации организаций.
+            </p>
+            <img src="images/Kaskad.PNG" alt="Данные АС Каскад" class="modal-image" />
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128205; Источник: АС «Каскад», раздел ограничений по счетам</span>
+            </p>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-kaskad">Закрыть</button>
             </div>
         </div>
     </div>
@@ -979,45 +997,55 @@
             });
         });
 
-        // ---------- Modal logic ----------
-        const modalOverlay = document.getElementById('modal-fns');
-        const openTriggers = document.querySelectorAll('[data-modal="modal-fns"]');
-        const closeButtons = document.querySelectorAll('[data-close="modal-fns"]');
+        // ---------- Universal Modal logic ----------
+        // Находим все модальные окна
+        const modals = document.querySelectorAll('.modal-overlay');
 
-        // Открытие
-        openTriggers.forEach(trigger => {
-            trigger.addEventListener('click', function(e) {
-                e.stopPropagation();
-                modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+        modals.forEach(modal => {
+            const modalId = modal.id;
+            // Триггеры открытия (элементы с data-modal="id")
+            const openTriggers = document.querySelectorAll(`[data-modal="${modalId}"]`);
+            // Кнопки закрытия внутри модалки (data-close="id")
+            const closeButtons = modal.querySelectorAll(`[data-close="${modalId}"]`);
+
+            // Открытие
+            openTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Закрытие по кнопкам
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Закрытие по клику на фон (overlay)
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             });
         });
 
-        // Закрытие по кнопкам
-        closeButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Закрытие по клику на фон (overlay)
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Закрытие по Escape
+        // Закрытие по Escape (для всех активных модалок)
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с попапом для этапа 1 загружен');
+        console.log('🚀 Landing «Сокрытие» с двумя попапами загружен');
     </script>
 
 </body>
