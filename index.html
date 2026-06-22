@@ -580,7 +580,7 @@
             font-weight: 700;
             color: var(--accent-blue);
             margin-bottom: 12px;
-            margin-right: 40px; /* чтобы не перекрывалось крестиком */
+            margin-right: 40px;
         }
 
         .modal .modal-sub {
@@ -843,8 +843,8 @@
                     <span class="tag">&#9679; Вывод даты</span>
                 </div>
 
-                <!-- Stage 4 -->
-                <div class="stage-card">
+                <!-- Stage 4 — теперь с попапом -->
+                <div class="stage-card" data-modal="modal-trans">
                     <div class="number">04</div>
                     <span class="icon">&#128181;</span>
                     <h3>Анализ транзакций</h3>
@@ -978,13 +978,31 @@
             <p class="modal-sub">
                 <strong>Детали этапа:</strong> Система отслеживает истечение срока, указанного в требовании ФНС об уплате недоимки и задолженности по пеням и штрафам при сумме свыше 3,5 млн рублей. Автоматический вывод даты для дальнейшего анализа позволяет своевременно реагировать на критические сроки.
             </p>
-            <!-- Изображение теперь с max-height 350px и object-fit: contain, чтобы текст был виден -->
             <img src="images/FNStre.jpg" alt="Контроль срока требования" class="modal-image" />
             <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
                 <span style="display:block; margin-top: 8px;">&#128197; Отслеживание сроков по требованиям ФНС</span>
             </p>
             <div class="modal-footer">
                 <button class="btn-modal-close" data-close="modal-tre">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (POPUP) для Анализа транзакций ===== -->
+    <div class="modal-overlay" id="modal-trans">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-trans">&times;</button>
+            <h3>Анализ транзакций</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> После истечения срока требования ФНС в сумме налоговой недоимки 3.5 млн рублей и более, происходит сбор и анализ транзакций в АС «Каскад» в аффилированных организациях (по учредителю/директору/бенефициару) титульной организации (в адрес которой направлено требование ФНС) и ближайших контрагентов с целью выявления транзакций с назначениями платежа («оплата за ООО»***) в сумме 3.5 млн рублей и более.
+            </p>
+            <!-- Здесь можно добавить изображение при необходимости -->
+            <!-- <img src="images/transactions.jpg" alt="Анализ транзакций" class="modal-image" /> -->
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128181; Выявление скрытых платежей в пользу третьих лиц</span>
+            </p>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-trans">Закрыть</button>
             </div>
         </div>
     </div>
@@ -1073,7 +1091,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с адаптивными попапами загружен');
+        console.log('🚀 Landing «Сокрытие» с четырьмя попапами загружен');
     </script>
 
 </body>
