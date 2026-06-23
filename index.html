@@ -291,6 +291,8 @@
             background: none;
             border: none;
             box-shadow: none;
+            /* ---------- ДОБАВЛЕНО: 3D-перспектива для вращения ---------- */
+            perspective: 800px;
         }
 
         .hero-graphic .hero-image {
@@ -301,6 +303,24 @@
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 51, 153, 0.1);
             object-fit: contain;
+            /* ---------- ДОБАВЛЕНО: анимация вращения ---------- */
+            animation: spinY 6s linear infinite;
+            backface-visibility: hidden;
+        }
+
+        /* ---------- ДОБАВЛЕНО: остановка вращения при наведении ---------- */
+        .hero-graphic:hover .hero-image {
+            animation-play-state: paused;
+        }
+
+        /* ---------- ДОБАВЛЕНО: ключевые кадры для вращения ---------- */
+        @keyframes spinY {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
         }
 
         /* ---------- Section common ---------- */
@@ -1102,7 +1122,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с исправленным выравниванием в правовой секции загружен');
+        console.log('🚀 Landing «Сокрытие» с анимированным логотипом загружен');
     </script>
 
 </body>
