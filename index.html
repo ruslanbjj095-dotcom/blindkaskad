@@ -291,7 +291,7 @@
             background: none;
             border: none;
             box-shadow: none;
-            /* ---------- ДОБАВЛЕНО: 3D-перспектива для вращения ---------- */
+            /* 3D-перспектива для вращения */
             perspective: 800px;
         }
 
@@ -303,17 +303,17 @@
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 51, 153, 0.1);
             object-fit: contain;
-            /* ---------- ДОБАВЛЕНО: анимация вращения ---------- */
+            /* Анимация вращения */
             animation: spinY 6s linear infinite;
             backface-visibility: hidden;
         }
 
-        /* ---------- ДОБАВЛЕНО: остановка вращения при наведении ---------- */
+        /* Остановка вращения при наведении */
         .hero-graphic:hover .hero-image {
             animation-play-state: paused;
         }
 
-        /* ---------- ДОБАВЛЕНО: ключевые кадры для вращения ---------- */
+        /* Ключевые кадры для вращения */
         @keyframes spinY {
             from {
                 transform: rotateY(0deg);
@@ -1019,7 +1019,7 @@
         </div>
     </div>
 
-    <!-- ===== MODAL (POPUP) для Анализа транзакций ===== -->
+    <!-- ===== MODAL (POPUP) для Анализа транзакций (ИЗМЕНЁН) ===== -->
     <div class="modal-overlay" id="modal-trans">
         <div class="modal">
             <button class="modal-close" data-close="modal-trans">&times;</button>
@@ -1027,11 +1027,11 @@
             <p class="modal-sub">
                 <strong>Детали этапа:</strong> После истечения срока требования ФНС в сумме налоговой недоимки 3.5 млн рублей и более, происходит сбор и анализ транзакций в АС «Каскад» в аффилированных организациях (по учредителю/директору/бенефициару) титульной организации (в адрес которой направлено требование ФНС) и ближайших контрагентов с целью выявления транзакций с назначениями платежа («оплата за ООО»***) в сумме 3.5 млн рублей и более.
             </p>
-            <!-- Здесь можно добавить изображение при необходимости -->
-            <!-- <img src="images/transactions.jpg" alt="Анализ транзакций" class="modal-image" /> -->
             <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
                 <span style="display:block; margin-top: 8px;">&#128181; Выявление скрытых платежей в пользу третьих лиц</span>
             </p>
+            <!-- === ВСТАВЛЕНО ИЗОБРАЖЕНИЕ ПОСЛЕ ТЕКСТА === -->
+            <img src="images/Dvizh.png" alt="Анализ транзакций" class="modal-image" />
             <div class="modal-footer">
                 <button class="btn-modal-close" data-close="modal-trans">Закрыть</button>
             </div>
@@ -1122,7 +1122,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с анимированным логотипом загружен');
+        console.log('🚀 Landing «Сокрытие» с анимированным логотипом и изображением в 4-м попапе загружен');
     </script>
 
 </body>
