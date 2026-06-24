@@ -291,7 +291,6 @@
             background: none;
             border: none;
             box-shadow: none;
-            /* 3D-перспектива для вращения */
             perspective: 800px;
         }
 
@@ -303,17 +302,14 @@
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 51, 153, 0.1);
             object-fit: contain;
-            /* Анимация вращения */
             animation: spinY 6s linear infinite;
             backface-visibility: hidden;
         }
 
-        /* Остановка вращения при наведении */
         .hero-graphic:hover .hero-image {
             animation-play-state: paused;
         }
 
-        /* Ключевые кадры для вращения */
         @keyframes spinY {
             from {
                 transform: rotateY(0deg);
@@ -630,6 +626,26 @@
             margin-bottom: 16px;
         }
 
+        .modal .example-text {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-green);
+            padding: 16px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin: 12px 0 20px;
+            word-break: break-word;
+        }
+
+        .modal .example-text a {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+        .modal .example-text a:hover {
+            color: var(--accent-green);
+        }
+
         .modal .modal-footer {
             display: flex;
             justify-content: flex-end;
@@ -737,6 +753,10 @@
             }
             .modal .modal-image {
                 max-height: 250px;
+            }
+            .modal .example-text {
+                font-size: 0.85rem;
+                padding: 12px 14px;
             }
         }
 
@@ -889,7 +909,7 @@
                 </div>
 
                 <!-- Stage 5 -->
-                <div class="stage-card">
+                <div class="stage-card" data-modal="modal-kaskad-output">
                     <div class="number">05</div>
                     <span class="icon">&#128194;</span>
                     <h3>Вывод в АС «Каскад»</h3>
@@ -901,8 +921,8 @@
                     <span class="tag">&#9679; Интеграция</span>
                 </div>
 
-                <!-- Stage 6 -->
-                <div class="stage-card" style="border-color:var(--accent-green);">
+                <!-- Stage 6 (ДОБАВЛЕН data-modal) -->
+                <div class="stage-card" data-modal="modal-recheck" style="border-color:var(--accent-green);">
                     <div class="number">06</div>
                     <span class="icon">&#128065;</span>
                     <h3>Перепроверка сотрудником</h3>
@@ -1019,21 +1039,59 @@
         </div>
     </div>
 
-    <!-- ===== MODAL (POPUP) для Анализа транзакций (ИЗМЕНЁН) ===== -->
+    <!-- ===== MODAL (POPUP) для Анализа транзакций ===== -->
     <div class="modal-overlay" id="modal-trans">
         <div class="modal">
             <button class="modal-close" data-close="modal-trans">&times;</button>
             <h3>Анализ транзакций</h3>
             <p class="modal-sub">
-                <strong>Детали этапа:</strong> После истечения срока требования ФНС в сумме налоговой недоимки 3.5 млн рублей и более, происходит сбор и анализ транзакций в АС «Каскад» в аффилированных организациях (по учредителю/директору/бенефициару) титульной организации (в адрес которой направлено требование ФНС) и ближайших контрагентов с целью выявления транзакций с назначениями платежа («оплата за ООО/АО/ПАО... (в зависимости от организационно-правовой формы) "***Название организации, имеющую налоговую недоимку***" ) в сумме 3.5 млн рублей и более.
+                <strong>Детали этапа:</strong> После истечения срока требования ФНС в сумме налоговой недоимки 3.5 млн рублей и более, происходит сбор и анализ транзакций в АС «Каскад» в аффилированных организациях (по учредителю/директору/бенефициару) титульной организации (в адрес которой направлено требование ФНС) и ближайших контрагентов с целью выявления транзакций с назначениями платежа («оплата за ООО»***) в сумме 3.5 млн рублей и более.
             </p>
             <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
                 <span style="display:block; margin-top: 8px;">&#128181; Выявление скрытых платежей в пользу третьих лиц</span>
             </p>
-            <!-- === ВСТАВЛЕНО ИЗОБРАЖЕНИЕ ПОСЛЕ ТЕКСТА === -->
             <img src="images/Dvizh.png" alt="Анализ транзакций" class="modal-image" />
             <div class="modal-footer">
                 <button class="btn-modal-close" data-close="modal-trans">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (POPUP) для Вывода в АС Каскад ===== -->
+    <div class="modal-overlay" id="modal-kaskad-output">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-kaskad-output">&times;</button>
+            <h3>Вывод в АС «Каскад»</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> Система автоматически формирует и передаёт всю собранную информацию по четырём ключевым показателям (данные ФНС, данные АС «Каскад», контроль срока требования, анализ транзакций) в единую базу АС «Каскад». Это позволяет сотрудникам, осуществляющим мониторинг деловой репутации, оперативно получать полную картину по каждому контрагенту и принимать взвешенные решения.
+            </p>
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128194; Интеграция с АС «Каскад» для централизованного хранения и анализа</span>
+            </p>
+            <img src="images/Sade.jpg" alt="Вывод в АС Каскад" class="modal-image" />
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-kaskad-output">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== НОВЫЙ MODAL (POPUP) для Перепроверки сотрудником ===== -->
+    <div class="modal-overlay" id="modal-recheck">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-recheck">&times;</button>
+            <h3>Перепроверка сотрудником</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> На этом этапе сотрудник, ответственный за мониторинг деловой репутации, проводит финальную верификацию всех собранных данных. Он проверяет корректность информации, сроки, суммы и выявляет признаки возможного сокрытия денежных средств. После подтверждения данных формируется заключение для передачи в контролирующие органы.
+            </p>
+            <!-- Изображение -->
+            <img src="images/Sade.jpg" alt="Перепроверка сотрудником" class="modal-image" />
+            <!-- Текстовый пример под изображением -->
+            <div class="example-text">
+                <strong>Пример:</strong><br />
+                ООО «Рога» исходя из данных сайта ФНС (<a href="https://pb.nalog.ru/" target="_blank">https://pb.nalog.ru/</a>) имеет на момент 01.05.2026 налоговую недоимку и задолженности по пеням и штрафам в размере 3.500.000 рублей. Так же, 10.05.2026 Банком было получено требование ФНС в отношении ООО «Рога» со сроком уплаты 20.05.2026 года на сумму 3.600.000 рублей. После чего, в период с 21.05.2026 (дата, следующая за окончанием срока по требованию ФНС) по 01.08.2026 в адрес контрагента ООО «Копыта» (с которым у ООО «Рога» имеются взаимоотношения) поступили распорядительные письма (от ООО «Рога) с просьбой об уплате конкретных сумм с назначением платежа (за ООО «Рога») на общую сумму не менее 3.500.000 рублей, тем самым создали условия для совершения преступления, предусмотренного ч.1 ст.199.2 УК РФ в результате чего денежные средства, которые должны были быть направлены на уплату налогов, миновали расчетные счета ООО «Рога».
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-recheck">Закрыть</button>
             </div>
         </div>
     </div>
@@ -1122,7 +1180,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с анимированным логотипом и изображением в 4-м попапе загружен');
+        console.log('🚀 Landing «Сокрытие» с анимированным логотипом, изображениями в 4, 5 и 6 попапах загружен');
     </script>
 
 </body>
