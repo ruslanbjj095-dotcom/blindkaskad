@@ -291,7 +291,6 @@
             background: none;
             border: none;
             box-shadow: none;
-            perspective: 800px;
         }
 
         .hero-graphic .hero-image {
@@ -302,21 +301,59 @@
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 51, 153, 0.1);
             object-fit: contain;
-            animation: spinY 6s linear infinite;
-            backface-visibility: hidden;
         }
 
-        .hero-graphic:hover .hero-image {
-            animation-play-state: paused;
+        /* ---------- Problematika section ---------- */
+        .problematika-section {
+            background: var(--bg-primary);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        @keyframes spinY {
-            from {
-                transform: rotateY(0deg);
-            }
-            to {
-                transform: rotateY(360deg);
-            }
+        .problematika-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .problematika-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .problematika-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-green);
+            box-shadow: 0 12px 40px rgba(0, 51, 153, 0.08);
+        }
+
+        .problematika-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+            color: var(--accent-blue);
+        }
+
+        .problematika-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+        }
+
+        .problematika-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .problematika-card .highlight-text {
+            color: var(--accent-green);
+            font-weight: 600;
         }
 
         /* ---------- Section common ---------- */
@@ -626,31 +663,6 @@
             margin-bottom: 16px;
         }
 
-        /* ---------- Увеличение изображения в 3-м попапе на 30% ---------- */
-        #modal-tre .modal-image {
-            max-height: 455px; /* 350px * 1.3 */
-        }
-
-        .modal .example-text {
-            background: var(--bg-secondary);
-            border-left: 4px solid var(--accent-green);
-            padding: 16px 20px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--text-primary);
-            margin: 12px 0 20px;
-            word-break: break-word;
-        }
-
-        .modal .example-text a {
-            color: var(--accent-blue);
-            text-decoration: underline;
-        }
-        .modal .example-text a:hover {
-            color: var(--accent-green);
-        }
-
         .modal .modal-footer {
             display: flex;
             justify-content: flex-end;
@@ -717,6 +729,10 @@
             .modal h3 {
                 font-size: 1.5rem;
             }
+            .problematika-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
         }
 
         @media (max-width: 640px) {
@@ -759,13 +775,11 @@
             .modal .modal-image {
                 max-height: 250px;
             }
-            /* Увеличение изображения в 3-м попапе на мобильных */
-            #modal-tre .modal-image {
-                max-height: 325px; /* 250px * 1.3 */
+            .problematika-card {
+                padding: 24px 18px;
             }
-            .modal .example-text {
-                font-size: 0.85rem;
-                padding: 12px 14px;
+            .problematika-card h3 {
+                font-size: 1.2rem;
             }
         }
 
@@ -820,6 +834,7 @@
                 <span>Сокрытие</span>
             </a>
             <nav class="nav">
+                <a href="#problematika">Проблематика и финансовый эффект</a>
                 <a href="#stages">Этапы</a>
                 <a href="#legal">Правовая основа</a>
                 <a href="#" class="btn-outline">СБЕР БЕЗОПАСНОСТЬ 2026</a>
@@ -844,11 +859,38 @@
                     от уплаты налогов, сборов и страховых взносов. Дополнительный
                     функционал в АС «Каскад» для оценки деловой репутации.
                 </p>
-                <a href="#stages" class="btn-primary">Узнать больше &rarr;</a>
+                <a href="#problematika" class="btn-primary">Узнать больше &rarr;</a>
             </div>
             <div class="hero-visual">
                 <div class="hero-graphic">
                     <img src="images/Logo.jpg" alt="Логотип" class="hero-image" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROBLEMATIKA SECTION ===== -->
+    <section class="problematika-section" id="problematika">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="label">Актуальность</span>
+                <h2>Проблематика и <span class="highlight">финансовый эффект</span></h2>
+                <p>Почему проект «Сокрытие» критически важен для экономической безопасности</p>
+            </div>
+            <div class="problematika-grid">
+                <div class="problematika-card fade-up">
+                    <span class="icon">&#9888;</span>
+                    <h3>Проблема</h3>
+                    <p>
+                        В течение последних лет, в условиях ужесточения налогового контроля, отмечается устойчивая тенденция к совершению руководства организаций крупного и среднего бизнеса налоговых преступлений, ответственность за которые предусмотрена УК РФ. Ключевое место среди них занимает ст. 199.2 Уголовного кодекса Российской Федерации, предусматривающая ответственность за сокрытие денежных средств либо имущества организации или индивидуального предпринимателя, за счёт которых должно производиться взыскание недоимки по налогам, сборам и страховым взносам. При этом действующие механизмы контроля не обеспечивают оперативного выявления и пресечения подобных схем. Путем внесения в АС «Каскад» дополнений, которые предлагаются в проекте «Сокрытие», мы получим возможность досрочно оценивать деловую репутацию заемщиков в направлении налоговых преступлений.
+                    </p>
+                </div>
+                <div class="problematika-card fade-up">
+                    <span class="icon">&#128200;</span>
+                    <h3>Финансовый эффект</h3>
+                    <p>
+                        В связи с досрочным выявлением рисков для Банка в части совершения преступления заемщиком, Банк сможет сохранить свои денежные средства либо предпринять дальновидные меры (введение ковенантов, отказ от сделки) для сохранения своих денежных средств. Экономический эффект будет составлять <span style="color: var(--accent-green); font-weight: 700;">не менее 300 млн рублей в год</span>.
+                    </p>
                 </div>
             </div>
         </div>
@@ -918,7 +960,7 @@
                 </div>
 
                 <!-- Stage 5 -->
-                <div class="stage-card" data-modal="modal-kaskad-output">
+                <div class="stage-card">
                     <div class="number">05</div>
                     <span class="icon">&#128194;</span>
                     <h3>Вывод в АС «Каскад»</h3>
@@ -931,7 +973,7 @@
                 </div>
 
                 <!-- Stage 6 -->
-                <div class="stage-card" data-modal="modal-recheck" style="border-color:var(--accent-green);">
+                <div class="stage-card" style="border-color:var(--accent-green);">
                     <div class="number">06</div>
                     <span class="icon">&#128065;</span>
                     <h3>Перепроверка сотрудником</h3>
@@ -955,9 +997,7 @@
                     </span>
                     <h2>Статья 199.2 УК РФ</h2>
                     <p>
-                        Проект помогает выявлять организации, формально подпадающие
-                        под состав преступления, предусмотренного статьёй 199.2
-                        Уголовного кодекса Российской Федерации.
+                        Проект помогает выявлять организации, формально подпадающие под состав преступления, предусмотренного статьёй 199.2 Уголовного кодекса Российской Федерации. Так же, данный проект будет давать дополнительную возможность обмена данными с ПХО/ФНС для дальнейшего взаимодействия/анализа недобросовестных заемщиков.
                     </p>
                     <ul>
                         <li>
@@ -1030,7 +1070,7 @@
         </div>
     </div>
 
-    <!-- ===== MODAL (POPUP) для Контроля срока требования (увеличенное изображение) ===== -->
+    <!-- ===== MODAL (POPUP) для Контроля срока требования ===== -->
     <div class="modal-overlay" id="modal-tre">
         <div class="modal">
             <button class="modal-close" data-close="modal-tre">&times;</button>
@@ -1038,7 +1078,6 @@
             <p class="modal-sub">
                 <strong>Детали этапа:</strong> Система отслеживает истечение срока, указанного в требовании ФНС об уплате недоимки и задолженности по пеням и штрафам при сумме свыше 3,5 млн рублей. Автоматический вывод даты для дальнейшего анализа позволяет своевременно реагировать на критические сроки.
             </p>
-            <!-- Изображение увеличено на 30% за счёт CSS-правила #modal-tre .modal-image -->
             <img src="images/FNStre.jpg" alt="Контроль срока требования" class="modal-image" />
             <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
                 <span style="display:block; margin-top: 8px;">&#128197; Отслеживание сроков по требованиям ФНС</span>
@@ -1057,49 +1096,13 @@
             <p class="modal-sub">
                 <strong>Детали этапа:</strong> После истечения срока требования ФНС в сумме налоговой недоимки 3.5 млн рублей и более, происходит сбор и анализ транзакций в АС «Каскад» в аффилированных организациях (по учредителю/директору/бенефициару) титульной организации (в адрес которой направлено требование ФНС) и ближайших контрагентов с целью выявления транзакций с назначениями платежа («оплата за ООО»***) в сумме 3.5 млн рублей и более.
             </p>
+            <!-- Здесь можно добавить изображение при необходимости -->
+            <!-- <img src="images/transactions.jpg" alt="Анализ транзакций" class="modal-image" /> -->
             <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
                 <span style="display:block; margin-top: 8px;">&#128181; Выявление скрытых платежей в пользу третьих лиц</span>
             </p>
-            <img src="images/Dvizh.png" alt="Анализ транзакций" class="modal-image" />
             <div class="modal-footer">
                 <button class="btn-modal-close" data-close="modal-trans">Закрыть</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== MODAL (POPUP) для Вывода в АС Каскад ===== -->
-    <div class="modal-overlay" id="modal-kaskad-output">
-        <div class="modal">
-            <button class="modal-close" data-close="modal-kaskad-output">&times;</button>
-            <h3>Вывод в АС «Каскад»</h3>
-            <p class="modal-sub">
-                <strong>Детали этапа:</strong> Система автоматически формирует и передаёт всю собранную информацию по четырём ключевым показателям (данные ФНС, данные АС «Каскад», контроль срока требования, анализ транзакций) в единую базу АС «Каскад». Это позволяет сотрудникам, осуществляющим мониторинг деловой репутации, оперативно получать полную картину по каждому контрагенту и принимать взвешенные решения.
-            </p>
-            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
-                <span style="display:block; margin-top: 8px;">&#128194; Интеграция с АС «Каскад» для централизованного хранения и анализа</span>
-            </p>
-            <img src="images/Sade.jpg" alt="Вывод в АС Каскад" class="modal-image" />
-            <div class="modal-footer">
-                <button class="btn-modal-close" data-close="modal-kaskad-output">Закрыть</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== MODAL (POPUP) для Перепроверки сотрудником ===== -->
-    <div class="modal-overlay" id="modal-recheck">
-        <div class="modal">
-            <button class="modal-close" data-close="modal-recheck">&times;</button>
-            <h3>Перепроверка сотрудником</h3>
-            <p class="modal-sub">
-                <strong>Детали этапа:</strong> На этом этапе сотрудник, ответственный за мониторинг деловой репутации, проводит финальную верификацию всех собранных данных. Он проверяет корректность информации, сроки, суммы и выявляет признаки возможного сокрытия денежных средств. После подтверждения данных формируется заключение для передачи в контролирующие органы.
-            </p>
-            <img src="images/Sade.jpg" alt="Перепроверка сотрудником" class="modal-image" />
-            <div class="example-text">
-                <strong>Пример:</strong><br />
-                ООО «Рога» исходя из данных сайта ФНС (<a href="https://pb.nalog.ru/" target="_blank">https://pb.nalog.ru/</a>) имеет на момент 01.05.2026 налоговую недоимку и задолженности по пеням и штрафам в размере 3.500.000 рублей. Так же, 10.05.2026 Банком было получено требование ФНС в отношении ООО «Рога» со сроком уплаты 20.05.2026 года на сумму 3.600.000 рублей. После чего, в период с 21.05.2026 (дата, следующая за окончанием срока по требованию ФНС) по 01.08.2026 в адрес контрагента ООО «Копыта» (с которым у ООО «Рога» имеются взаимоотношения) поступили распорядительные письма (от ООО «Рога) с просьбой об уплате конкретных сумм с назначением платежа (за ООО «Рога») на общую сумму не менее 3.500.000 рублей, тем самым создали условия для совершения преступления, предусмотренного ч.1 ст.199.2 УК РФ в результате чего денежные средства, которые должны были быть направлены на уплату налогов, миновали расчетные счета ООО «Рога».
-            </div>
-            <div class="modal-footer">
-                <button class="btn-modal-close" data-close="modal-recheck">Закрыть</button>
             </div>
         </div>
     </div>
@@ -1188,7 +1191,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с увеличенным изображением в 3-м попапе загружен');
+        console.log('🚀 Landing «Сокрытие» с дополненным текстом в правовой основе загружен');
     </script>
 
 </body>
