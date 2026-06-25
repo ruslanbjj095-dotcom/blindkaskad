@@ -291,6 +291,7 @@
             background: none;
             border: none;
             box-shadow: none;
+            perspective: 800px;
         }
 
         .hero-graphic .hero-image {
@@ -301,7 +302,7 @@
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 51, 153, 0.1);
             object-fit: contain;
-            animation: spinLogo 20s linear infinite;
+            animation: spinLogoY 20s linear infinite;
             transition: animation-play-state 0.3s;
         }
 
@@ -309,9 +310,9 @@
             animation-play-state: paused;
         }
 
-        @keyframes spinLogo {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes spinLogoY {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
         }
 
         /* ---------- Problematika section ---------- */
@@ -1260,7 +1261,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с вращающимся Logo.jpg в Hero-блоке загружен');
+        console.log('🚀 Landing «Сокрытие» с горизонтальным вращением Logo.jpg загружен');
     </script>
 
 </body>
