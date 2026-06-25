@@ -960,7 +960,7 @@
                 </div>
 
                 <!-- Stage 5 -->
-                <div class="stage-card">
+                <div class="stage-card" data-modal="modal-out">
                     <div class="number">05</div>
                     <span class="icon">&#128194;</span>
                     <h3>Вывод в АС «Каскад»</h3>
@@ -973,7 +973,7 @@
                 </div>
 
                 <!-- Stage 6 -->
-                <div class="stage-card" style="border-color:var(--accent-green);">
+                <div class="stage-card" data-modal="modal-check" style="border-color:var(--accent-green);">
                     <div class="number">06</div>
                     <span class="icon">&#128065;</span>
                     <h3>Перепроверка сотрудником</h3>
@@ -1006,7 +1006,6 @@
                             от <span class="highlight-text">3,5 млн до 13,5 млн</span> рублей
                         </li>
                         <li>
-                            <!-- Убрали зелёную галочку -->
                             <strong>Часть 2</strong> — сокрытие денежных средств
                             от <span class="highlight-text">13,5 млн</span> рублей и более
                         </li>
@@ -1096,13 +1095,45 @@
             <p class="modal-sub">
                 <strong>Детали этапа:</strong> После истечения срока требования ФНС в сумме налоговой недоимки 3.5 млн рублей и более, происходит сбор и анализ транзакций в АС «Каскад» в аффилированных организациях (по учредителю/директору/бенефициару) титульной организации (в адрес которой направлено требование ФНС) и ближайших контрагентов с целью выявления транзакций с назначениями платежа («оплата за ООО»***) в сумме 3.5 млн рублей и более.
             </p>
-            <!-- Здесь можно добавить изображение при необходимости -->
-            <!-- <img src="images/transactions.jpg" alt="Анализ транзакций" class="modal-image" /> -->
             <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
                 <span style="display:block; margin-top: 8px;">&#128181; Выявление скрытых платежей в пользу третьих лиц</span>
             </p>
             <div class="modal-footer">
                 <button class="btn-modal-close" data-close="modal-trans">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (POPUP) для Вывода в АС Каскад ===== -->
+    <div class="modal-overlay" id="modal-out">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-out">&times;</button>
+            <h3>Вывод в АС «Каскад»</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> Автоматизированный вывод собранной информации по четырём вышеуказанным показателям в АС «Каскад» для дальнейшего использования в мониторинге. Данные передаются в структурированном виде для интеграции в процессы оценки деловой репутации и принятия решений.
+            </p>
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128194; Интеграция с АС «Каскад»</span>
+            </p>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-out">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (POPUP) для Перепроверки сотрудником ===== -->
+    <div class="modal-overlay" id="modal-check">
+        <div class="modal">
+            <button class="modal-close" data-close="modal-check">&times;</button>
+            <h3>Перепроверка сотрудником</h3>
+            <p class="modal-sub">
+                <strong>Детали этапа:</strong> Финальная верификация полученных данных сотрудником, осуществляющим мониторинг деловой репутации контрагентов. На этом этапе проводится ручная проверка выявленных аномалий, формируется заключение и принимается решение о дальнейших действиях в отношении заёмщика.
+            </p>
+            <p class="modal-sub" style="font-size:0.9rem; color:var(--text-secondary);">
+                <span style="display:block; margin-top: 8px;">&#128065; Контроль качества и принятие решений</span>
+            </p>
+            <div class="modal-footer">
+                <button class="btn-modal-close" data-close="modal-check">Закрыть</button>
             </div>
         </div>
     </div>
@@ -1191,7 +1222,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с обновлённой правовой основой загружен');
+        console.log('🚀 Landing «Сокрытие» с полным набором поп-апов (все 6 этапов) загружен');
     </script>
 
 </body>
