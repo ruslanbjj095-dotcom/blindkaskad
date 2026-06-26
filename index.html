@@ -118,7 +118,7 @@
             height: 38px;
             background: var(--gradient-green);
             border-radius: 8px;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #fff;
             font-weight: 700;
         }
@@ -143,7 +143,8 @@
             position: relative;
             transition: var(--transition);
         }
-        .nav a::after {
+        /* Подчёркивание только для обычных ссылок, не для кнопки */
+        .nav a:not(.btn-sber)::after {
             content: '';
             position: absolute;
             bottom: -4px;
@@ -156,25 +157,36 @@
         .nav a:hover {
             color: var(--accent-blue);
         }
-        .nav a:hover::after {
+        .nav a:not(.btn-sber):hover::after {
             width: 100%;
         }
 
-        .btn-outline {
-            padding: 8px 22px;
-            border: 2px solid var(--accent-green);
+        /* ---------- Обновлённая кнопка СБЕР БЕЗОПАСНОСТЬ 2026 ---------- */
+        .btn-sber {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--gradient-green);
+            border: none;
             border-radius: 60px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.85rem;
-            color: var(--accent-green);
-            background: transparent;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 16px rgba(0, 163, 75, 0.25);
             transition: var(--transition);
             cursor: pointer;
+            letter-spacing: 0.3px;
         }
-        .btn-outline:hover {
-            background: var(--accent-green);
+        .btn-sber:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 28px rgba(0, 163, 75, 0.4);
             color: #fff;
-            box-shadow: 0 4px 16px rgba(0, 163, 75, 0.25);
+        }
+        .btn-sber .icon {
+            font-size: 1.2rem;
+            line-height: 1;
         }
 
         /* ---------- Hero ---------- */
@@ -759,6 +771,10 @@
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
+            .btn-sber {
+                padding: 8px 16px;
+                font-size: 0.75rem;
+            }
         }
 
         @media (max-width: 640px) {
@@ -771,9 +787,13 @@
             .nav a {
                 font-size: 0.8rem;
             }
-            .btn-outline {
-                padding: 6px 16px;
-                font-size: 0.75rem;
+            .btn-sber {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+                gap: 4px;
+            }
+            .btn-sber .icon {
+                font-size: 1rem;
             }
             .hero {
                 padding: 120px 0 60px;
@@ -860,14 +880,17 @@
     <header class="header" id="header">
         <div class="container">
             <a href="#" class="logo">
-                <span class="logo-icon">&#9679;</span>
+                <span class="logo-icon">&#128737;</span>
                 <span>Сокрытие</span>
             </a>
             <nav class="nav">
                 <a href="#problematika">Проблематика и финансовый эффект</a>
                 <a href="#stages">Этапы</a>
                 <a href="#legal">Правовая основа</a>
-                <a href="#" class="btn-outline">СБЕР БЕЗОПАСНОСТЬ 2026</a>
+                <a href="#" class="btn-sber">
+                    <span class="icon">&#128737;</span>
+                    СБЕР БЕЗОПАСНОСТЬ 2026
+                </a>
             </nav>
         </div>
     </header>
@@ -1155,12 +1178,11 @@
         </div>
     </div>
 
-    <!-- ===== MODAL (POPUP) для Перепроверки и проведения анализа сотрудником (добавлено изображение Sade.jpg) ===== -->
+    <!-- ===== MODAL (POPUP) для Перепроверки и проведения анализа сотрудником ===== -->
     <div class="modal-overlay" id="modal-check">
         <div class="modal">
             <button class="modal-close" data-close="modal-check">&times;</button>
             <h3>Перепроверка и проведение анализа сотрудником</h3>
-            <!-- Вставлено изображение перед текстом -->
             <img src="images/Sade.jpg" alt="Перепроверка сотрудником" class="modal-image" />
             <p class="modal-sub">
                 <strong>Детали этапа:</strong> Финальная верификация полученных данных сотрудником, осуществляющим мониторинг деловой репутации контрагентов. На этом этапе проводится ручная проверка выявленных аномалий, формируется заключение и принимается решение о дальнейших действиях в отношении заёмщика.
@@ -1261,7 +1283,7 @@
             }
         });
 
-        console.log('🚀 Landing «Сокрытие» с изображением Sade.jpg в 6-м попапе загружен');
+        console.log('🚀 Landing «Сокрытие» — иконка логотипа изменена на щит');
     </script>
 
 </body>
